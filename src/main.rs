@@ -53,8 +53,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Ok(_) => {
                     let _ = tx.send(format!("Порт {} открыт", port)).await;
                 }
-                Err(_) => {
-                    //let _ = tx.send(format!("Порт {} закрыт", port)).await;
+                Err(e) => {
+                    let _ = tx.send(format!("Порт {} закрыт, сообщение: {}", port,e)).await;
                 }
             }
         });
